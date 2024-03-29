@@ -7,7 +7,7 @@ const Tags = ({
   tagsPerPage,
   handleSort,
   sortBy,
-  sortDirection
+  sortDirection,
 }) => {
   if (loading) {
     return <h2>Loading...</h2>;
@@ -37,18 +37,20 @@ const Tags = ({
           <tr>
             <th scope="col" style={{ width: "50%" }}>
               Tag Name
-              <button onClick={() => handleSort("name")}
-                style={{border: 'none', backgroundColor: 'transparent'}}
+              <button
+                onClick={() => handleSort("name")}
+                style={{ border: "none", backgroundColor: "transparent" }}
               >
-                {sortBy === 'name' && sortDirection === 'asc' ? "↑" : "↓"}
+                {sortBy === "name" && sortDirection === "asc" ? "↑" : "↓"}
               </button>
             </th>
             <th scope="col" style={{ width: "50%" }}>
               Count
-              <button onClick={() => handleSort("count")}
-                style={{border: 'none', backgroundColor: 'transparent'}}
+              <button
+                onClick={() => handleSort("count")}
+                style={{ border: "none", backgroundColor: "transparent" }}
               >
-                {sortBy === 'count' && sortDirection === 'asc' ? "↑" : "↓"}
+                {sortBy === "count" && sortDirection === "asc" ? "↑" : "↓"}
               </button>
             </th>
           </tr>
