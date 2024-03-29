@@ -17,9 +17,7 @@ const Pagination = ({ tagsPerPage, totalTags, paginate, currentPage }) => {
             aria-label="Previous"
             onClick={() => paginate(currentPage - 1)}
           >
-            <span aria-hidden="true">
-              &laquo;
-            </span>
+            <span aria-hidden="true">&laquo;</span>
             <span class="visually-hidden">Previous</span>
           </a>
         </li>

@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setTags,
@@ -43,7 +43,7 @@ const App = () => {
       }
     };
     fetchTags();
-    }, [dispatch]);
+  }, [dispatch]);
   if (error) {
     return <div>Error: {error}</div>;
   }
