@@ -27,6 +27,18 @@ const App = () => {
     };
     fetchTags();
   }, []);
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const handlePerPageChange = (e) => {
+    const value = parseInt(e.target.value);
+    const newTotalPages = Math.ceil(tags.length / value);
+    const newCurrentPage =
+      currentPage > newTotalPages ? newTotalPages : currentPage;
+    setCurrentPage(newCurrentPage);
+    setTagsPerPage(value);
+  };
 
   const indexOfLastTag = currentPage * tagsPerPage;
   const indexOfFirstTag = indexOfLastTag - tagsPerPage;
@@ -34,13 +46,15 @@ const App = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
   return (
     <div className="container">
       <h1 className="text-warning mb-3">Tags</h1>
-      <Tags tags={currentTags} loading={loading} />
+      <Tags
+        tags={currentTags}
+        loading={loading}
+        handlePerPageChange={handlePerPageChange}
+        tagsPerPage={tagsPerPage}
+      />
       <Pagination
         tagsPerPage={tagsPerPage}
         totalTags={tags.length}
