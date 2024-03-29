@@ -10,6 +10,8 @@ const App = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [tagsPerPage, setTagsPerPage] = useState(10);
+  const [sortBy, setSortBy] = useState("count");
+  const [sortDirection, setSortDirection] = useState('asc');
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -29,6 +31,34 @@ const App = () => {
   }, []);
   if (error) {
     return <div>Error: {error}</div>;
+  }
+
+  const handleSort = (sortByValue) => {
+    const sortedTags = [...tags];
+    let newSortDirection = 'asc';
+    if (sortByValue === sortBy) {
+      newSortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+    }
+    if (sortByValue === 'count') {
+      sortedTags.sort((a, b) => {
+        if (newSortDirection === 'asc'){
+          return a.count - b.count;
+        } else {
+          return b.count - a.count;
+        }
+      })
+    } else if (sortByValue === 'name') {
+      sortedTags.sort((a, b) => {
+        if (newSortDirection === 'asc') {
+          return a.name.localeCompare(b.name);
+        } else {
+          return b.name.localeCompare(a.name)
+        }
+      });
+    }
+    setTags(sortedTags);
+    setSortBy(sortByValue);
+    setSortDirection(newSortDirection);
   }
 
   const handlePerPageChange = (e) => {
@@ -54,6 +84,9 @@ const App = () => {
         loading={loading}
         handlePerPageChange={handlePerPageChange}
         tagsPerPage={tagsPerPage}
+        handleSort={handleSort}
+        sortBy={sortBy}
+        sortDirection={sortDirection}
       />
       <Pagination
         tagsPerPage={tagsPerPage}
