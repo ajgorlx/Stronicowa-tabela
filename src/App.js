@@ -45,6 +45,7 @@ const App = () => {
         tagsPerPage={tagsPerPage}
         totalTags={tags.length}
         paginate={paginate}
+        currentPage={currentPage}
       />
     </div>
   );
