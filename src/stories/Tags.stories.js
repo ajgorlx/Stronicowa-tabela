@@ -23,4 +23,5 @@ handlePerPageChange: action('handlePerPageChange'),
 handleSort: action('handleSort'),
 sortBy: "count",
 sortDirection: "asc",
-}
+};
+
